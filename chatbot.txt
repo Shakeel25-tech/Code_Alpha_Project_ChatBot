@@ -1,0 +1,23 @@
+import openai
+from pyexpat.errors import messages
+
+openai.api_key = "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"
+def chat_with_gpt(prompt):
+     responses = openai.ChatCompletion.creat(
+         model = "gpt-3.5-turbo",
+     messages = [{"role": "user", "content": prompt}]
+     )
+
+     return responses.choice[0].message.content.strip()
+
+if __name__ == "__main__":
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() in ["quit", "exit", "bye"]:
+            break
+
+        response = chat_with_gpt(user_input)
+        print("Chatbot: ",response)
+
+
+
